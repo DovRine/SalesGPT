@@ -10,10 +10,6 @@ COPY package*.json ./
 # Install any needed packages specified in package.json
 RUN npm ci
 
-# Install nodemon
-RUN npm i -g nodemon
-RUN npm i -g next
-
 # Copy the rest of the current directory contents into the container at /usr/src/app
 COPY . .
 
@@ -24,4 +20,6 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 EXPOSE 3000
 
 # Run npm run dev when the container launches
+USER root
+
 CMD ["npm", "run", "dev"]
